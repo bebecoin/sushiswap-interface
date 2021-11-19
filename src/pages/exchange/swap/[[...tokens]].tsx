@@ -35,6 +35,7 @@ import useWrapCallback, { WrapType } from '../../../hooks/useWrapCallback'
 
 import { ARCHER_RELAY_URI } from '../../../config/archer'
 import AddressInputPanel from '../../../components/AddressInputPanel'
+import Web3Status from '../../../components/Web3Status'
 import { AdvancedSwapDetails } from '../../../features/exchange-v1/swap/AdvancedSwapDetails'
 import AdvancedSwapDetailsDropdown from '../../../features/exchange-v1/swap/AdvancedSwapDetailsDropdown'
 import Alert from '../../../components/Alert'
@@ -105,7 +106,7 @@ export default function Swap() {
 
   const { account, chainId } = useActiveWeb3React()
 
-  const toggleNetworkModal = useNetworkModalToggle()
+  // const toggleNetworkModal = useNetworkModalToggle()
 
   const router = useRouter()
 
@@ -121,6 +122,8 @@ export default function Swap() {
   const [useArcher] = useUserArcherUseRelay()
   const [archerETHTip] = useUserArcherETHTip()
   const [archerGasPrice] = useUserArcherGasPrice()
+
+  const inIframe = typeof window !== 'undefined' && window.self !== window.top
 
   // archer
   const archerRelay = chainId ? ARCHER_RELAY_URI?.[chainId] : undefined
@@ -437,7 +440,7 @@ export default function Swap() {
   // }, [chainId, previousChainId, router]);
 
   return (
-    <Container id="swap-page" className="py-4 md:py-8 lg:py-12">
+    <Container id="swap-page" className="absolute bottom-8 right-4 max-w-[500px]" onClick={(e) => e.stopPropagation()}>
       <Head>
         <title>{i18n._(t`SushiSwap`)} | Sushi</title>
         <meta
@@ -451,14 +454,14 @@ export default function Swap() {
         tokens={importTokensNotInDefault}
         onConfirm={handleConfirmTokenWarning}
       />
-      <DoubleGlowShadow>
-        <div className="p-4 space-y-4 rounded bg-dark-900 z-1">
+      <Web3Status />
+      <div className="p-4 pt-0 space-y-4 rounded bg-dark-900 z-1">
+        <div>
           <SwapHeader
             input={currencies[Field.INPUT]}
             output={currencies[Field.OUTPUT]}
             allowedSlippage={allowedSlippage}
           />
-
           <ConfirmSwapModal
             isOpen={showConfirm}
             trade={trade}
@@ -490,7 +493,7 @@ export default function Swap() {
               showCommonBases={true}
               id="swap-currency-input"
             />
-            <AutoColumn justify="space-between" className="py-3">
+            <AutoColumn justify="space-between" className="py-1">
               <div
                 className={classNames(isExpertMode ? 'justify-between' : 'flex-start', 'px-4 flex-wrap w-full flex')}
               >
@@ -501,9 +504,9 @@ export default function Swap() {
                     onSwitchTokens()
                   }}
                 >
-                  <div className="rounded-full bg-dark-900 p-3px">
+                  <div className="p-[2px] border-black rounded-full bg-dark-900">
                     <div
-                      className="p-3 rounded-full bg-dark-800 hover:bg-dark-700"
+                      className="p-3 rounded-full bg-dark-700 hover:bg-dark-600"
                       onMouseEnter={() => setAnimateSwapArrows(true)}
                       onMouseLeave={() => setAnimateSwapArrows(false)}
                     >
@@ -511,7 +514,7 @@ export default function Swap() {
                         animationData={swapArrowsAnimationData}
                         autoplay={animateSwapArrows}
                         loop={false}
-                        style={{ width: 32, height: 32 }}
+                        style={{ width: 18, height: 18 }}
                       />
                     </div>
                   </div>
@@ -714,7 +717,7 @@ export default function Swap() {
             <UnsupportedCurrencyFooter show={swapIsUnsupported} currencies={[currencies.INPUT, currencies.OUTPUT]} />
           )}
         </div>
-      </DoubleGlowShadow>
+      </div>
     </Container>
   )
 }
