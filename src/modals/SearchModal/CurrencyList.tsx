@@ -120,14 +120,14 @@ function CurrencyRow({
     <RowBetween
       id={`token-item-${key}`}
       style={style}
-      className="px-5 py-1 rounded cursor-pointer hover:bg-dark-800"
+      className="px-4 py-1 rounded cursor-pointer hover:bg-[#4B4E5E]"
       onClick={() => (isSelected ? null : onSelect())}
       disabled={isSelected}
       selected={otherSelected}
     >
       <div className="flex flex-row items-center space-x-4">
         <div className="flex items-center">
-          <CurrencyLogo currency={currency} size={32} />
+          <CurrencyLogo className="rounded-full" currency={currency} size={32} />
         </div>
         <div>
           <div title={currency.name} className="text-sm font-medium">

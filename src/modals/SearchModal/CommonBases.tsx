@@ -37,9 +37,9 @@ export default function CommonBases({
               onClick={() => !isSelected && onSelect(currency)}
               disabled={isSelected}
               key={currencyId(currency)}
-              className="flex items-center p-2 m-1 space-x-2 rounded bg-dark-800 hover:bg-dark-700 disabled:bg-dark-1000 disabled:cursor-not-allowed"
+              className="flex items-center p-[7px] m-1 space-x-2 rounded-full bg-dark-800 hover:bg-[#4B505D] disabled:bg-dark-1000 disabled:cursor-not-allowed"
             >
-              <CurrencyLogo currency={currency} />
+              <CurrencyLogo className="rounded-full" currency={currency} />
               <Typography variant="sm" className="font-semibold">
                 {currency.symbol}
               </Typography>

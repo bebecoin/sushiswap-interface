@@ -42,42 +42,42 @@ const SOCK = (
 // eslint-disable-next-line react/prop-types
 function StatusIcon({ connector }: { connector: AbstractConnector }) {
   if (connector === injected) {
-    return <Image src="/chef.svg" alt="Injected (MetaMask etc...)" width={20} height={20} />
+    return <Image unoptimized={true} src="/chef.svg" alt="Injected (MetaMask etc...)" width={20} height={20} />
     // return <Identicon />
   } else if (connector.constructor.name === 'WalletConnectConnector') {
     return (
       <IconWrapper size={16}>
-        <Image src="/images/wallets/wallet-connect.png" alt={'Wallet Connect'} width="16px" height="16px" />
+        <Image unoptimized={true} src="/images/wallets/wallet-connect.png" alt={'Wallet Connect'} width="16px" height="16px" />
       </IconWrapper>
     )
   } else if (connector.constructor.name === 'LatticeConnector') {
     return (
       <IconWrapper size={16}>
-        <Image src="/images/wallets/lattice.png" alt={'Lattice'} width="16px" height="16px" />
+        <Image unoptimized={true} src="/images/wallets/lattice.png" alt={'Lattice'} width="16px" height="16px" />
       </IconWrapper>
     )
   } else if (connector.constructor.name === 'WalletLinkConnector') {
     return (
       <IconWrapper size={16}>
-        <Image src="/images/wallets/coinbase.svg" alt={'Coinbase Wallet'} width="16px" height="16px" />
+        <Image unoptimized={true} src="/images/wallets/coinbase.svg" alt={'Coinbase Wallet'} width="16px" height="16px" />
       </IconWrapper>
     )
   } else if (connector.constructor.name === 'FortmaticConnector') {
     return (
       <IconWrapper size={16}>
-        <Image src="/images/wallets/fortmatic.png" alt={'Fortmatic'} width="16px" height="16px" />
+        <Image unoptimized={true} src="/images/wallets/fortmatic.png" alt={'Fortmatic'} width="16px" height="16px" />
       </IconWrapper>
     )
   } else if (connector.constructor.name === 'PortisConnector') {
     return (
       <IconWrapper size={16}>
-        <Image src="/images/wallets/portis.png" alt={'Portis'} width="16px" height="16px" />
+        <Image unoptimized={true} src="/images/wallets/portis.png" alt={'Portis'} width="16px" height="16px" />
       </IconWrapper>
     )
   } else if (connector.constructor.name === 'KeystoneConnector') {
     return (
       <IconWrapper size={16}>
-        <Image src="/images/wallets/keystone.png" alt={'Keystone'} width="16px" height="16px" />
+        <Image unoptimized={true} src="/images/wallets/keystone.png" alt={'Keystone'} width="16px" height="16px" />
       </IconWrapper>
     )
   }

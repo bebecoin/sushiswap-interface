@@ -8,6 +8,7 @@ import {
   SUSHI_ADDRESS,
   TradeType,
   Trade as V2Trade,
+  USDC_ADDRESS,
   WNATIVE_ADDRESS,
 } from '@sushiswap/sdk'
 import { DEFAULT_ARCHER_ETH_TIP, DEFAULT_ARCHER_GAS_ESTIMATE } from '../../config/archer'
@@ -69,8 +70,8 @@ export function useSwapActionHandlers(): {
           currencyId: currency.isToken
             ? currency.address
             : currency.isNative && currency.chainId !== ChainId.CELO
-            ? 'ETH'
-            : '',
+              ? 'ETH'
+              : '',
         })
       )
     },
@@ -251,11 +252,11 @@ export function useDerivedSwapInfo(doArcher = false): {
             !value || isZero(value)
               ? { from: account, to: address, data: calldata }
               : {
-                  from: account,
-                  to: address,
-                  data: calldata,
-                  value,
-                }
+                from: account,
+                to: address,
+                data: calldata,
+                value,
+              }
 
           return library
             .estimateGas(tx)
@@ -372,9 +373,9 @@ export function queryParametersToSwapState(parsedQs: ParsedQs, chainId: ChainId 
 // updates the swap state to use the defaults for a given network
 export function useDefaultsFromURLSearch():
   | {
-      inputCurrencyId: string | undefined
-      outputCurrencyId: string | undefined
-    }
+    inputCurrencyId: string | undefined
+    outputCurrencyId: string | undefined
+  }
   | undefined {
   const { chainId } = useActiveWeb3React()
   const dispatch = useAppDispatch()
@@ -382,9 +383,9 @@ export function useDefaultsFromURLSearch():
   const [expertMode] = useExpertModeManager()
   const [result, setResult] = useState<
     | {
-        inputCurrencyId: string | undefined
-        outputCurrencyId: string | undefined
-      }
+      inputCurrencyId: string | undefined
+      outputCurrencyId: string | undefined
+    }
     | undefined
   >()
 

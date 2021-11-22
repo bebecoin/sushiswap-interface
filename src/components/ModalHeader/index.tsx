@@ -17,7 +17,7 @@ const ModalHeader: FC<ModalHeaderProps> = ({
   onBack = undefined,
 }) => {
   return (
-    <div className={`flex items-center justify-between mb-4 ${className}`}>
+    <div className={`flex items-center text-white justify-between mb-4 ${className}`}>
       {onBack && <ChevronLeftIcon onClick={onBack} width={24} height={24} className="cursor-pointer" />}
       {title && (
         <Typography component="h2" variant="h3" className="font-bold">
@@ -25,7 +25,7 @@ const ModalHeader: FC<ModalHeaderProps> = ({
         </Typography>
       )}
       <div
-        className="flex items-center justify-center w-6 h-6 cursor-pointer text-primary hover:text-high-emphesis"
+        className="flex items-center justify-center w-6 h-6 text-white cursor-pointer hover:text-high-emphesis"
         onClick={onClose}
       >
         <XIcon width={24} height={24} />

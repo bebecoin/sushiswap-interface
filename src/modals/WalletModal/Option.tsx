@@ -27,9 +27,8 @@ export default function Option({
   const content = (
     <div
       onClick={onClick}
-      className={`flex items-center justify-between w-full p-3 rounded cursor-pointer ${
-        !active ? 'bg-dark-800 hover:bg-dark-700' : 'bg-dark-1000'
-      }`}
+      className={`flex items-center justify-between w-full p-3 rounded cursor-pointer ${!active ? 'bg-secondary hover:border-[1px] hover:border-[#888888]' : 'bg-dark-1000'
+        }`}
     >
       <div>
         <div className="flex items-center">
@@ -38,7 +37,7 @@ export default function Option({
         </div>
         {subheader && <div className="mt-2.5 text-xs">{subheader}</div>}
       </div>
-      <Image src={icon} alt={'Icon'} width="32px" height="32px" />
+      <Image unoptimized={true} src={icon} alt={'Icon'} width="32px" height="32px" />
     </div>
   )
   if (link) {

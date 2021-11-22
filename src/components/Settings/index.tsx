@@ -8,7 +8,7 @@ import {
 } from '../../state/user/hooks'
 import { useModalOpen, useToggleSettingsMenu } from '../../state/application/hooks'
 
-import { AdjustmentsIcon } from '@heroicons/react/outline'
+import { CogIcon } from '@heroicons/react/solid'
 import { ApplicationModal } from '../../state/application/actions'
 import Button from '../Button'
 import Modal from '../Modal'
@@ -50,10 +50,10 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
         onClick={toggle}
         id="open-settings-dialog-button"
       >
-        <AdjustmentsIcon className="w-[26px] h-[26px] transform rotate-90" />
+        <CogIcon className="w-[26px] h-[26px] transform rotate-90" />
       </div>
       {open && (
-        <div className="absolute top-8 right-0 z-50 -mr-2.5 min-w-20 md:m-w-22 md:-mr-5 bg-dark-900 border-2 border-dark-800 rounded w-80 shadow-lg">
+        <div className="absolute top-10 left-0 z-50 -mr-2.5 min-w-20 md:m-w-22 md:-mr-5 bg-primary border-[1px] border-[#6F6F6F] rounded w-80 shadow-lg">
           <div className="px-4 py-2 space-y-2">
             <Typography weight={700} className="text-high-emphesis">
               {i18n._(t`Transaction Settings`)}
@@ -80,13 +80,13 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
                 toggle={
                   expertMode
                     ? () => {
-                        toggleExpertMode()
-                        setShowConfirmation(false)
-                      }
+                      toggleExpertMode()
+                      setShowConfirmation(false)
+                    }
                     : () => {
-                        toggle()
-                        setShowConfirmation(true)
-                      }
+                      toggle()
+                      setShowConfirmation(true)
+                    }
                 }
               />
             </div>

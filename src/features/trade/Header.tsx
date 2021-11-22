@@ -1,12 +1,9 @@
 import { ChainId, Currency, Percent } from '@sushiswap/sdk'
 import React, { FC, useState } from 'react'
+import { XIcon } from '@heroicons/react/outline'
 
 import Gas from '../../components/Gas'
-import MyOrders from '../exchange-v1/limit-order/MyOrders'
-import NavLink from '../../components/NavLink'
 import Settings from '../../components/Settings'
-import { currencyId } from '../../functions'
-import { t } from '@lingui/macro'
 import { useActiveWeb3React } from '../../hooks'
 import Web3Network from '../../components/Web3Network'
 import { useLingui } from '@lingui/react'
@@ -38,19 +35,20 @@ const ExchangeHeader: FC<ExchangeHeaderProps> = ({ input, output, allowedSlippag
 
   return (
     <div className="flex items-center justify-between p-2 space-x-2">
-      <h1 className="flex items-center font-bold h-[46px]">Sushiswap</h1>
+      <div className="flex items-center space-x-2">
+        <h1 className="flex items-center font-bold text-white h-[46px] text-xl">Sushiswap</h1>
+        <div className="relative flex items-center w-full h-full rounded hover:bg-dark-800">
+          <Settings placeholderSlippage={allowedSlippage} />
+        </div>
+        {library && library.provider.isMetaMask && (
+          <div className="hidden sm:inline-block">
+            <Web3Network />
+          </div>
+        )}
+      </div>
+
       <div className="flex items-center">
         <div className="grid grid-flow-col gap-1">
-          {library && library.provider.isMetaMask && (
-            <div className="hidden sm:inline-block">
-              <Web3Network />
-            </div>
-          )}
-          {isLimitOrder && (
-            <div className="items-center h-full w-full cursor-pointer hover:bg-dark-800 rounded px-3 py-1.5">
-              <MyOrders />
-            </div>
-          )}
           {chainId === ChainId.MAINNET && (
             <div className="flex items-center w-full h-full px-3 space-x-1 rounded cursor-pointer text-green text-opacity-80 hover:text-opacity-100 hover:bg-dark-800">
               <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -63,11 +61,15 @@ const ExchangeHeader: FC<ExchangeHeaderProps> = ({ input, output, allowedSlippag
               <div className="text-baseline">
                 <Gas />
               </div>
+
             </div>
           )}
-          <div className="relative flex items-center w-full h-full rounded hover:bg-dark-800">
-            <Settings placeholderSlippage={allowedSlippage} />
-          </div>
+        </div>
+        <div
+          className="flex items-center justify-center w-6 h-6 text-white cursor-pointer hover:text-high-emphesis"
+          onClick={() => window.parent.postMessage({ name: 'sushiswap', type: 'modal', data: { open: false } }, '*')}
+        >
+          <XIcon width={24} height={24} />
         </div>
       </div>
     </div>

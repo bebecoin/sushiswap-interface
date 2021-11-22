@@ -106,11 +106,11 @@ export default function TransactionSettings({ placeholderSlippage }: Transaction
               !!slippageError
                 ? 'border-red'
                 : tooLow || tooHigh
-                ? 'border-yellow'
-                : userSlippageTolerance !== 'auto'
-                ? 'border-blue'
-                : 'border-transparent',
-              'border p-2 rounded bg-dark-800'
+                  ? 'border-yellow'
+                  : userSlippageTolerance !== 'auto'
+                    ? 'border-blue'
+                    : 'border-transparent',
+              'border p-2 rounded bg-[#4B4E5E]'
             )}
             tabIndex={-1}
           >
@@ -127,8 +127,8 @@ export default function TransactionSettings({ placeholderSlippage }: Transaction
                   slippageInput.length > 0
                     ? slippageInput
                     : userSlippageTolerance === 'auto'
-                    ? ''
-                    : userSlippageTolerance.toFixed(2)
+                      ? ''
+                      : userSlippageTolerance.toFixed(2)
                 }
                 onChange={(e) => parseSlippageInput(e.target.value)}
                 onBlur={() => {
@@ -163,8 +163,8 @@ export default function TransactionSettings({ placeholderSlippage }: Transaction
               {slippageError === SlippageError.InvalidInput
                 ? i18n._(t`Enter a valid slippage percentage`)
                 : slippageError === SlippageError.RiskyLow
-                ? i18n._(t`Your transaction may fail`)
-                : i18n._(t`Your transaction may be frontrun`)}
+                  ? i18n._(t`Your transaction may fail`)
+                  : i18n._(t`Your transaction may be frontrun`)}
             </div>
           </Typography>
         ) : null}
@@ -180,7 +180,7 @@ export default function TransactionSettings({ placeholderSlippage }: Transaction
         </div>
         <div className="flex items-center">
           <div
-            className="p-2 rounded bg-dark-800 min-w-[82px] max-w-[102px]"
+            className="p-2 rounded bg-[#4B4E5E] min-w-[82px] max-w-[102px]"
             style={{ maxWidth: '40px', marginRight: '8px' }}
             tabIndex={-1}
           >
@@ -191,8 +191,8 @@ export default function TransactionSettings({ placeholderSlippage }: Transaction
                 deadlineInput.length > 0
                   ? deadlineInput
                   : deadline === DEFAULT_DEADLINE_FROM_NOW
-                  ? ''
-                  : (deadline / 60).toString()
+                    ? ''
+                    : (deadline / 60).toString()
               }
               onChange={(e) => parseCustomDeadline(e.target.value)}
               onBlur={() => {

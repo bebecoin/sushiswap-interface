@@ -21,7 +21,7 @@ import { useLingui } from '@lingui/react'
 const WalletIcon: FC<{ size?: number; src: string; alt: string }> = ({ size, src, alt, children }) => {
   return (
     <div className="flex flex-row items-end justify-center mr-2 flex-nowrap md:items-center">
-      <Image src={src} alt={alt} width={size} height={size} />
+      <Image unoptimized={true} src={src} alt={alt} width={size} height={size} />
       {children}
     </div>
   )
@@ -84,7 +84,7 @@ const AccountDetails: FC<AccountDetailsProps> = ({
           <Button
             onClick={async () => {
               // casting as PortisConnector here defeats the lazyload purpose
-              ;(connector as any).portis.showPortis()
+              ; (connector as any).portis.showPortis()
             }}
           >
             Show Portis
@@ -118,7 +118,7 @@ const AccountDetails: FC<AccountDetailsProps> = ({
                     color="gray"
                     size="xs"
                     onClick={() => {
-                      ;(connector as any).close()
+                      ; (connector as any).close()
                     }}
                   >
                     {i18n._(t`Disconnect`)}

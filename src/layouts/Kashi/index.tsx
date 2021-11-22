@@ -31,7 +31,7 @@ export default function Layout({
             <div className="flex justify-center col-span-12 xl:col-span-3 lg:justify-start">
               <Link href="/borrow">
                 <a className="flex justify-center xl:justify-start xl:mx-8">
-                  <Image src={kashiLogo} alt="Kashi" height={64} width={250} />
+                  <Image unoptimized={true} src={kashiLogo} alt="Kashi" height={64} width={250} />
                 </a>
               </Link>
             </div>
@@ -79,9 +79,8 @@ export default function Layout({
                 <div className="flex pr-2 sm:pr-4">
                   <NavLink href="/balances">
                     <a
-                      className={`px-2 sm:px-4 flex justify-end items-center font-medium ${
-                        router.pathname === '/balances' ? 'text-high-emphesis' : 'text-secondary hover:text-primary'
-                      }`}
+                      className={`px-2 sm:px-4 flex justify-end items-center font-medium ${router.pathname === '/balances' ? 'text-high-emphesis' : 'text-secondary hover:text-primary'
+                        }`}
                     >
                       <svg
                         className="mr-2 fill-current"

@@ -188,7 +188,7 @@ export function CurrencySearch({
             ref={inputRef as RefObject<HTMLInputElement>}
             onChange={handleInput}
             onKeyDown={handleEnter}
-            className="w-full bg-transparent border border-dark-700 focus:border-transparent focus:border-gradient-r-blue-pink-dark-900 rounded placeholder-secondary focus:placeholder-primary font-bold text-base px-6 py-3.5"
+            className="w-full bg-[#454B57] rounded-xl placeholder-secondary font-bold text-base px-6 py-3.5"
           />
         </div>
       )}
@@ -227,7 +227,7 @@ export function CurrencySearch({
       )}
       {allowManageTokenList && (
         <div className="mt-3">
-          <Button id="list-token-manage-button" onClick={showManageView} color="gray">
+          <Button id="list-token-manage-button" className="border-none rounded-full bg-[#1E2225]" size="default" onClick={showManageView} color="gray">
             {i18n._(t`Manage Token Lists`)}
           </Button>
         </div>

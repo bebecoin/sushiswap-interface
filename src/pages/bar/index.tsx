@@ -188,7 +188,7 @@ export default function Stake() {
                 {i18n._(t`Maximize yield by staking SUSHI for xSUSHI`)}
               </div>
               {/* <div className="self-start pl-6 pr-3 mb-1 min-w-max md:hidden">
-                                <img src={XSushiSignSmall} alt="xsushi sign" />
+                                <Image src={XSushiSignSmall} alt="xsushi sign" />
                             </div> */}
             </div>
             <div className="max-w-lg pr-3 mb-2 text-sm leading-5 text-gray-500 md:text-base md:mb-4 md:pr-0">
@@ -212,7 +212,7 @@ export default function Stake() {
                         </div> */}
           </div>
           <div className="hidden px-8 ml-6 md:block w-72">
-            <Image src="/xsushi-sign.png" alt="xSUSHI sign" width="100%" height="100%" layout="responsive" />
+            <Image unoptimized={true} src="/xsushi-sign.png" alt="xSUSHI sign" width="100%" height="100%" layout="responsive" />
           </div>
         </div>
         <div className="flex flex-col justify-center md:flex-row">
@@ -224,7 +224,7 @@ export default function Stake() {
                     <p className="text-sm font-bold whitespace-nowrap md:text-lg md:leading-5 text-high-emphesis">
                       {i18n._(t`Staking APR`)}{' '}
                     </p>
-                    {/* <img className="ml-3 cursor-pointer" src={MoreInfoSymbol} alt={'more info'} /> */}
+                    {/* <Image className="ml-3 cursor-pointer" src={MoreInfoSymbol} alt={'more info'} /> */}
                   </div>
                   <div className="flex">
                     <a
@@ -299,9 +299,8 @@ export default function Stake() {
                 {/* input overlay: */}
                 <div className="relative w-full h-0 pointer-events-none bottom-14">
                   <div
-                    className={`flex justify-between items-center h-14 rounded px-3 md:px-5 ${
-                      inputError ? ' border border-red' : ''
-                    }`}
+                    className={`flex justify-between items-center h-14 rounded px-3 md:px-5 ${inputError ? ' border border-red' : ''
+                      }`}
                   >
                     <div className="flex space-x-2 ">
                       {inputError && (
@@ -314,9 +313,8 @@ export default function Stake() {
                         />
                       )}
                       <p
-                        className={`text-sm md:text-lg font-bold whitespace-nowrap ${
-                          input ? 'text-high-emphesis' : 'text-secondary'
-                        }`}
+                        className={`text-sm md:text-lg font-bold whitespace-nowrap ${input ? 'text-high-emphesis' : 'text-secondary'
+                          }`}
                       >
                         {`${input ? input : '0'} ${activeTab === 0 ? '' : 'x'}SUSHI`}
                       </p>
@@ -336,7 +334,7 @@ export default function Stake() {
                   </div>
                 </div>
                 {(approvalState === ApprovalState.NOT_APPROVED || approvalState === ApprovalState.PENDING) &&
-                activeTab === 0 ? (
+                  activeTab === 0 ? (
                   <Button
                     className={`${buttonStyle} text-high-emphesis bg-cyan-blue hover:bg-opacity-90`}
                     disabled={approvalState === ApprovalState.PENDING}
@@ -354,10 +352,10 @@ export default function Stake() {
                       buttonDisabled
                         ? buttonStyleDisabled
                         : !walletConnected
-                        ? buttonStyleConnectWallet
-                        : insufficientFunds
-                        ? buttonStyleInsufficientFunds
-                        : buttonStyleEnabled
+                          ? buttonStyleConnectWallet
+                          : insufficientFunds
+                            ? buttonStyleInsufficientFunds
+                            : buttonStyleEnabled
                     }
                     onClick={handleClickButton}
                     disabled={buttonDisabled || inputError}
@@ -365,12 +363,12 @@ export default function Stake() {
                     {!walletConnected
                       ? i18n._(t`Connect Wallet`)
                       : !input
-                      ? i18n._(t`Enter Amount`)
-                      : insufficientFunds
-                      ? i18n._(t`Insufficient Balance`)
-                      : activeTab === 0
-                      ? i18n._(t`Confirm Staking`)
-                      : i18n._(t`Confirm Withdrawal`)}
+                        ? i18n._(t`Enter Amount`)
+                        : insufficientFunds
+                          ? i18n._(t`Insufficient Balance`)
+                          : activeTab === 0
+                            ? i18n._(t`Confirm Staking`)
+                            : i18n._(t`Confirm Withdrawal`)}
                   </button>
                 )}
               </div>
@@ -405,7 +403,7 @@ export default function Stake() {
                     <p className="text-lg font-bold md:text-2xl md:font-medium text-high-emphesis">
                       {i18n._(t`Unstaked`)}
                     </p>
-                    {/* <img className="w-4 ml-2 cursor-pointer" src={MoreInfoSymbol} alt={'more info'} /> */}
+                    {/* <Image className="w-4 ml-2 cursor-pointer" src={MoreInfoSymbol} alt={'more info'} /> */}
                   </div>
                   <div className="flex items-center ml-8 space-x-4 md:ml-0">
                     <Image
@@ -428,7 +426,7 @@ export default function Stake() {
                   {/* <div className="flex items-center justify-between">
                         <div className="flex items-center flex-1 flex-nowrap">
                             <p className="text-base font-bold md:text-lg text-high-emphesis">Weighted APR</p>
-                            <img className="w-4 ml-2 cursor-pointer" src={MoreInfoSymbol} alt={'more info'} />
+                            <Image className="w-4 ml-2 cursor-pointer" src={MoreInfoSymbol} alt={'more info'} />
                         </div>
                         <div className="flex flex-1 md:flex-initial">
                             <p className="ml-5 text-base text-primary md:ml-0">{`${weightedApr}%`}</p>

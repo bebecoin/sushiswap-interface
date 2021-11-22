@@ -20,7 +20,7 @@ export default function TransactionFailedModal({ isOpen, onDismiss }: Transactio
           <CloseIcon onClick={onDismiss} />
         </div>
         <div className="flex justify-center">
-          <Image src={'/transaction-rejected.png'} width="96px" height="96px" alt="transaction rejected" />
+          <Image unoptimized={true} src={'/transaction-rejected.png'} width="96px" height="96px" alt="transaction rejected" />
         </div>
         <div className="flex items-baseline justify-center mt-3 text-3xl flex-nowrap">
           <p className="text-high-emphesis">Uh Oh!&nbsp;</p>
