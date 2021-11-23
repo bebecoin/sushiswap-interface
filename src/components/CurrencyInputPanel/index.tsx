@@ -69,7 +69,7 @@ export default function CurrencyInputPanel({
   }, [setModalOpen])
 
   return (
-    <div id={id} className={classNames(hideInput ? 'p-4' : 'p-5', 'rounded bg-secondary text-white')}>
+    <div id={id} className={classNames(hideInput ? 'p-2' : 'p-3', 'rounded bg-secondary text-white')}>
       <div className="flex flex-col justify-between space-y-3 sm:space-y-0 sm:flex-row">
         <div className={classNames('w-full sm:w-2/5')}>
           <button
@@ -92,7 +92,7 @@ export default function CurrencyInputPanel({
                   <CurrencyLogo className="rounded-full" currency={currency} size={'40px'} />
                 </div>
               ) : (
-                <div className="rounded bg-dark-700" style={{ maxWidth: 40, maxHeight: 40 }}>
+                <div className="rounded-full bg-dark-700" style={{ maxWidth: 40, maxHeight: 40 }}>
                   <div style={{ width: 40, height: 40 }}>
                     <Lottie animationData={selectCoinAnimation} autoplay loop />
                   </div>
@@ -117,7 +117,7 @@ export default function CurrencyInputPanel({
                         '...' +
                         currency.symbol.slice(currency.symbol.length - 5, currency.symbol.length)
                         : currency?.symbol) || (
-                          <div className="px-2 py-1 mt-1 text-xs font-medium bg-transparent border rounded-full hover:bg-primary border-low-emphesis text-secondary whitespace-nowrap ">
+                          <div className="px-2 py-1 text-xs font-medium text-white bg-transparent border border-white rounded-full hover:bg-primary whitespace-nowrap ">
                             {i18n._(t`Select a token`)}
                           </div>
                         )}
@@ -133,22 +133,13 @@ export default function CurrencyInputPanel({
           </button>
         </div>
         {!hideInput && (
-          <div
-            className={classNames(
-              'flex items-center w-full space-x-3 rounded bg-[#353742] focus:bg-dark-700 p-3 sm:w-3/5'
-              // showMaxButton && selectedCurrencyBalance && 'px-3'
-            )}
-          >
-            <>
-              {showMaxButton && selectedCurrencyBalance && (
-                <Button
-                  onClick={onMax}
-                  size="xs"
-                  className="text-xs font-medium bg-transparent border rounded-full hover:bg-primary border-low-emphesis text-secondary whitespace-nowrap"
-                >
-                  {i18n._(t`Max`)}
-                </Button>
+          <div className="w-full space-y-2 sm:w-3/5">
+            <div
+              className={classNames(
+                'flex items-center w-full rounded bg-[#353742] focus:bg-dark-700 px-3 py-2 space-x-2'
+                // showMaxButton && selectedCurrencyBalance && 'px-3'
               )}
+            >
               <Input.Numeric
                 id="token-amount-input"
                 value={value}
@@ -156,22 +147,30 @@ export default function CurrencyInputPanel({
                   onUserInput(val)
                 }}
               />
-
-              {!hideBalance && currency && selectedCurrencyBalance ? (
-                <div className="flex flex-col">
-                  <div onClick={onMax} className="text-xs font-medium text-right cursor-pointer text-low-emphesis">
-                    {renderBalance ? (
-                      renderBalance(selectedCurrencyBalance)
-                    ) : (
-                      <>
-                        {i18n._(t`Balance:`)} {formatCurrencyAmount(selectedCurrencyBalance, 4)} {currency.symbol}
-                      </>
-                    )}
-                  </div>
-                  <FiatValue fiatValue={fiatValue} priceImpact={priceImpact} />
+              {showMaxButton && selectedCurrencyBalance && (
+                <Button
+                  onClick={onMax}
+                  size="xs"
+                  className="text-xs font-medium bg-transparent border rounded-full border-primary text-primary whitespace-nowrap"
+                >
+                  {i18n._(t`Max`)}
+                </Button>
+              )}
+            </div>
+            {!hideBalance && currency && selectedCurrencyBalance ? (
+              <div className="flex items-center justify-between space-x-2">
+                <FiatValue fiatValue={fiatValue} priceImpact={priceImpact} />
+                <div onClick={onMax} className="text-xs font-medium text-right text-white cursor-pointer">
+                  {renderBalance ? (
+                    renderBalance(selectedCurrencyBalance)
+                  ) : (
+                    <>
+                      {i18n._(t`Balance:`)} {formatCurrencyAmount(selectedCurrencyBalance, 4)} {currency.symbol}
+                    </>
+                  )}
                 </div>
-              ) : null}
-            </>
+              </div>
+            ) : null}
           </div>
         )}
       </div>

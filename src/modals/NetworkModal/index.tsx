@@ -177,32 +177,36 @@ export default function NetworkModal(): JSX.Element | null {
   const { chainId, library, account } = useActiveWeb3React()
   const networkModalOpen = useModalOpen(ApplicationModal.NETWORK)
   const toggleNetworkModal = useNetworkModalToggle()
+  let networks = [
+    ChainId.MAINNET,
+    ChainId.MATIC,
+    ChainId.BSC,
+    ChainId.FANTOM,
+    ChainId.ARBITRUM,
+    ChainId.OKEX,
+    ChainId.HECO,
+    ChainId.XDAI,
+    ChainId.HARMONY,
+    ChainId.AVALANCHE,
+    ChainId.CELO,
+    ChainId.PALM,
+    ChainId.MOONRIVER,
+  ]
+  if (process.env.NODE_ENV === 'development') {
+    networks = networks.concat([ChainId.KOVAN, ChainId.ROPSTEN, ChainId.MATIC_TESTNET, ChainId.BSC_TESTNET])
+  }
 
   if (!chainId) return null
 
   return (
-    <Modal isOpen={networkModalOpen} onDismiss={toggleNetworkModal} maxWidth={500}>
+    <Modal isOpen={networkModalOpen} onDismiss={toggleNetworkModal} maxWidth={670}>
       <ModalHeader onClose={toggleNetworkModal} className="text-white" title="Select a Network" />
       <div className="mb-6 text-lg text-white">
         You are currently on the <span className="font-bold text-blue">{NETWORK_LABEL[chainId]}</span> network
       </div>
 
-      <div className="grid grid-flow-row-dense grid-cols-1 gap-5 overflow-y-auto md:grid-cols-1">
-        {[
-          ChainId.MAINNET,
-          ChainId.MATIC,
-          ChainId.BSC,
-          // ChainId.FANTOM,
-          // ChainId.ARBITRUM,
-          // ChainId.OKEX,
-          // ChainId.HECO,
-          // ChainId.XDAI,
-          // ChainId.HARMONY,
-          // ChainId.AVALANCHE,
-          // ChainId.CELO,
-          // ChainId.PALM,
-          // ChainId.MOONRIVER,
-        ].map((key: ChainId, i: number) => {
+      <div className="grid grid-flow-row-dense grid-cols-1 gap-5 overflow-y-auto md:grid-cols-2">
+        {networks.map((key: ChainId, i: number) => {
           if (chainId === key) {
             return (
               <button key={i} className="w-full col-span-1 p-px rounded bg-gradient-to-r from-[#FF4156] to-[#FF009F]">

@@ -54,7 +54,7 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
       </div>
       {open && (
         <div className="absolute top-10 left-0 z-50 -mr-2.5 min-w-20 md:m-w-22 md:-mr-5 bg-primary border-[1px] border-[#6F6F6F] rounded w-80 shadow-lg">
-          <div className="px-4 py-2 space-y-2">
+          <div className="px-4 py-2 space-y-4">
             <Typography weight={700} className="text-high-emphesis">
               {i18n._(t`Transaction Settings`)}
             </Typography>
