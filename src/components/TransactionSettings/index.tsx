@@ -185,7 +185,7 @@ export default function TransactionSettings({ placeholderSlippage }: Transaction
             tabIndex={-1}
           >
             <input
-              className={classNames(deadlineError ? 'text-red' : '', 'bg-transparent placeholder-low-emphesis')}
+              className={classNames(deadlineError ? 'text-red' : '', 'bg-transparent placeholder-secondary')}
               placeholder={(DEFAULT_DEADLINE_FROM_NOW / 60).toString()}
               value={
                 deadlineInput.length > 0

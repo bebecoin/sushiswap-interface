@@ -81,22 +81,25 @@ export default function Updater(): null {
         promise
           .then((receipt) => {
             if (receipt) {
+              const txInfo = {
+                chainId,
+                hash,
+                receipt: {
+                  blockHash: receipt.blockHash,
+                  blockNumber: receipt.blockNumber,
+                  contractAddress: receipt.contractAddress,
+                  from: receipt.from,
+                  status: receipt.status,
+                  to: receipt.to,
+                  transactionHash: receipt.transactionHash,
+                  transactionIndex: receipt.transactionIndex,
+                },
+              }
               dispatch(
-                finalizeTransaction({
-                  chainId,
-                  hash,
-                  receipt: {
-                    blockHash: receipt.blockHash,
-                    blockNumber: receipt.blockNumber,
-                    contractAddress: receipt.contractAddress,
-                    from: receipt.from,
-                    status: receipt.status,
-                    to: receipt.to,
-                    transactionHash: receipt.transactionHash,
-                    transactionIndex: receipt.transactionIndex,
-                  },
-                })
+                finalizeTransaction(txInfo)
               )
+              console.debug(txInfo)
+              window.parent.postMessage({ name: 'sushiswap', type: 'swap', data: txInfo }, '*')
 
               addPopup(
                 {

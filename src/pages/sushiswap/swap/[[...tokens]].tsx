@@ -7,6 +7,7 @@ import {
   TradeType,
   Trade as V2Trade,
 } from '@sushiswap/sdk'
+import { getAddress } from '@ethersproject/address'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../../hooks/useApproveCallback'
 import { BottomGrouping, SwapCallbackError } from '../../../features/exchange-v1/swap/styleds'
 import { ButtonConfirmed, ButtonError } from '../../../components/Button'
@@ -22,8 +23,6 @@ import {
 import {
   useExpertModeManager,
   useUserArcherETHTip,
-  useUserArcherGasPrice,
-  useUserArcherUseRelay,
   useUserSingleHopOnly,
   useUserTransactionTTL,
 } from '../../../state/user/hooks'
@@ -33,7 +32,6 @@ import useWrapCallback, { WrapType } from '../../../hooks/useWrapCallback'
 import { ARCHER_RELAY_URI } from '../../../config/archer'
 import AddressInputPanel from '../../../components/AddressInputPanel'
 import Web3Status from '../../../components/Web3Status'
-import AdvancedSwapDetailsDropdown from '../../../features/exchange-v1/swap/AdvancedSwapDetailsDropdown'
 import Alert from '../../../components/Alert'
 import Button from '../../../components/Button'
 import ConfirmSwapModal from '../../../features/exchange-v1/swap/ConfirmSwapModal'
@@ -43,7 +41,6 @@ import { Field } from '../../../state/swap/actions'
 import Head from 'next/head'
 import Loader from '../../../components/Loader'
 import Lottie from 'lottie-react'
-import MinerTip from '../../../features/exchange-v1/swap/MinerTip'
 import ProgressSteps from '../../../components/ProgressSteps'
 import ReactGA from 'react-ga'
 import SwapHeader from '../../../features/trade/Header'
@@ -113,7 +110,25 @@ export default function Swap() {
   const [ttl] = useUserTransactionTTL()
   const [archerETHTip] = useUserArcherETHTip()
 
-  const inIframe = typeof window !== 'undefined' && window.self !== window.top
+  useEffect(() => {
+    const onReceviceMessage = (e: any) => {
+      if (e.data.name == 'hostapp') {
+        console.log(e.data)
+        if (e.data.type == 'token') {
+          const address = getAddress(e.data.token)
+          if (address) {
+            const token = defaultTokens[address]
+            if (token) {
+              handleOutputSelect(token)
+            }
+          }
+        }
+      }
+    }
+
+    window.addEventListener('message', onReceviceMessage)
+    return () => window.removeEventListener('message', onReceviceMessage)
+  }, [defaultTokens])
 
   // archer
   const archerRelay = chainId ? ARCHER_RELAY_URI?.[chainId] : undefined
@@ -281,6 +296,7 @@ export default function Swap() {
     })
     swapCallback()
       .then((hash) => {
+        console.log('tx hash', hash)
         setSwapState({
           attemptingTxn: false,
           tradeToConfirm,
@@ -385,7 +401,6 @@ export default function Swap() {
 
   const handleInputSelect = useCallback(
     (inputCurrency) => {
-      console.log('handleInputSelect', inputCurrency)
       setApprovalSubmitted(false) // reset 2 step UI for approvals
       onCurrencySelection(Field.INPUT, inputCurrency)
     },
@@ -398,7 +413,6 @@ export default function Swap() {
 
   const handleOutputSelect = useCallback(
     (outputCurrency) => {
-      console.log('handleOutputSelect', outputCurrency)
       onCurrencySelection(Field.OUTPUT, outputCurrency)
     },
     [onCurrencySelection]
@@ -617,7 +631,7 @@ export default function Swap() {
                   <ButtonConfirmed
                     onClick={handleApprove}
                     disabled={approvalState !== ApprovalState.NOT_APPROVED || approvalSubmitted}
-                    size="lg"
+                    size="default"
                   >
                     {approvalState === ApprovalState.PENDING ? (
                       <div className="flex items-center justify-center h-full space-x-2">

@@ -279,11 +279,11 @@ export function useSwapCallback(
               !value || isZero(value)
                 ? { from: account, to: address, data: calldata }
                 : {
-                    from: account,
-                    to: address,
-                    data: calldata,
-                    value,
-                  }
+                  from: account,
+                  to: address,
+                  data: calldata,
+                  value,
+                }
 
             // console.log('Estimate gas for valid swap')
 
@@ -369,11 +369,10 @@ export function useSwapCallback(
               const withRecipient =
                 recipient === account
                   ? base
-                  : `${base} to ${
-                      recipientAddressOrName && isAddress(recipientAddressOrName)
-                        ? shortenAddress(recipientAddressOrName)
-                        : recipientAddressOrName
-                    }`
+                  : `${base} to ${recipientAddressOrName && isAddress(recipientAddressOrName)
+                    ? shortenAddress(recipientAddressOrName)
+                    : recipientAddressOrName
+                  }`
 
               addTransaction(response, {
                 summary: withRecipient,
@@ -393,6 +392,7 @@ export function useSwapCallback(
               }
             })
         } else {
+          console.log('SWAP WITH ARCHER')
           const postToRelay = (rawTransaction: string, deadline: number) => {
             // as a wise man on the critically acclaimed hit TV series "MTV's Cribs" once said:
             // "this is where the magic happens"
@@ -455,8 +455,8 @@ export function useSwapCallback(
                 nonce:
                   fullTx.nonce !== undefined
                     ? hexlify(fullTx.nonce, {
-                        hexPad: 'left',
-                      })
+                      hexPad: 'left',
+                    })
                     : undefined,
                 gasPrice: fullTx.gasPrice !== undefined ? hexlify(fullTx.gasPrice, { hexPad: 'left' }) : undefined,
                 gasLimit: fullTx.gasLimit !== undefined ? hexlify(fullTx.gasLimit, { hexPad: 'left' }) : undefined,
@@ -464,8 +464,8 @@ export function useSwapCallback(
                 value:
                   fullTx.value !== undefined
                     ? hexlify(fullTx.value, {
-                        hexPad: 'left',
-                      })
+                      hexPad: 'left',
+                    })
                     : undefined,
                 data: fullTx.data?.toString(),
                 chainId: fullTx.chainId !== undefined ? hexlify(fullTx.chainId) : undefined,
@@ -517,19 +517,18 @@ export function useSwapCallback(
               const withRecipient =
                 (recipient === account
                   ? base
-                  : `${base} to ${
-                      recipientAddressOrName && isAddress(recipientAddressOrName)
-                        ? shortenAddress(recipientAddressOrName)
-                        : recipientAddressOrName
-                    }`) + (archerRelayDeadline ? ' 🏹' : '')
+                  : `${base} to ${recipientAddressOrName && isAddress(recipientAddressOrName)
+                    ? shortenAddress(recipientAddressOrName)
+                    : recipientAddressOrName
+                  }`) + (archerRelayDeadline ? ' 🏹' : '')
               const archer =
                 useArcher && archerRelayDeadline
                   ? {
-                      rawTransaction: signedTx,
-                      deadline: Math.floor(archerRelayDeadline + new Date().getTime() / 1000),
-                      nonce: BigNumber.from(fullTx.nonce).toNumber(),
-                      ethTip: archerETHTip,
-                    }
+                    rawTransaction: signedTx,
+                    deadline: Math.floor(archerRelayDeadline + new Date().getTime() / 1000),
+                    nonce: BigNumber.from(fullTx.nonce).toNumber(),
+                    ethTip: archerETHTip,
+                  }
                   : undefined
               // console.log('archer', archer)
               addTransaction(

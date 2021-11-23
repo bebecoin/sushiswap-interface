@@ -95,7 +95,7 @@ export function ButtonConfirmed({
   if (confirmed) {
     return (
       <Button
-        variant="outlined"
+        variant="filled"
         color="green"
         size="lg"
         className={classNames(disabled && 'cursor-not-allowed', 'border-none opacity-50')}
