@@ -37,7 +37,7 @@ export default function Option({
         </div>
         {subheader && <div className="mt-2.5 text-xs">{subheader}</div>}
       </div>
-      <Image unoptimized={true} src={icon} alt={'Icon'} width="32px" height="32px" />
+      <Image src={icon} alt={'Icon'} width="32px" height="32px" />
     </div>
   )
   if (link) {

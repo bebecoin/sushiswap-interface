@@ -181,27 +181,27 @@ export default function NetworkModal(): JSX.Element | null {
   if (!chainId) return null
 
   return (
-    <Modal isOpen={networkModalOpen} onDismiss={toggleNetworkModal} maxWidth={672}>
+    <Modal isOpen={networkModalOpen} onDismiss={toggleNetworkModal} maxWidth={500}>
       <ModalHeader onClose={toggleNetworkModal} className="text-white" title="Select a Network" />
       <div className="mb-6 text-lg text-white">
         You are currently on the <span className="font-bold text-blue">{NETWORK_LABEL[chainId]}</span> network
       </div>
 
-      <div className="grid grid-flow-row-dense grid-cols-1 gap-5 overflow-y-auto md:grid-cols-2">
+      <div className="grid grid-flow-row-dense grid-cols-1 gap-5 overflow-y-auto md:grid-cols-1">
         {[
           ChainId.MAINNET,
           ChainId.MATIC,
-          ChainId.FANTOM,
-          ChainId.ARBITRUM,
-          ChainId.OKEX,
-          ChainId.HECO,
           ChainId.BSC,
-          ChainId.XDAI,
-          ChainId.HARMONY,
-          ChainId.AVALANCHE,
-          ChainId.CELO,
-          ChainId.PALM,
-          ChainId.MOONRIVER,
+          // ChainId.FANTOM,
+          // ChainId.ARBITRUM,
+          // ChainId.OKEX,
+          // ChainId.HECO,
+          // ChainId.XDAI,
+          // ChainId.HARMONY,
+          // ChainId.AVALANCHE,
+          // ChainId.CELO,
+          // ChainId.PALM,
+          // ChainId.MOONRIVER,
         ].map((key: ChainId, i: number) => {
           if (chainId === key) {
             return (
@@ -234,7 +234,7 @@ export default function NetworkModal(): JSX.Element | null {
               }}
               className="flex items-center w-full col-span-1 p-3 space-x-3 rounded cursor-pointer bg-[#1E2225]"
             >
-              <Image unoptimized={true} src={NETWORK_ICON[key]} alt="Switch Network" className="rounded-md" width="32px" height="32px" />
+              <Image src={NETWORK_ICON[key]} alt="Switch Network" className="rounded-md" width="32px" height="32px" />
               <div className="font-bold text-primary">{NETWORK_LABEL[key]}</div>
             </button>
           )
