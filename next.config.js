@@ -30,7 +30,7 @@ const nextConfig = {
   },
   experimental: { esmExternals: true },
   pwa: {
-    dest: 'public',
+    dest: 'public/sushiswap',
     runtimeCaching,
     disable: process.env.NODE_ENV === 'development',
   },
@@ -42,20 +42,29 @@ const nextConfig = {
     return [
       {
         source: '/',
-        destination: '/exchange/swap',
+        destination: '/sushiswap/swap',
         permanent: true,
       },
+      {
+        source: '/sushiswap',
+        destination: '/sushiswap/swap',
+        permanent: true,
+      }
     ]
   },
   async rewrites() {
     return [
       {
+        source: '/sushiswap',
+        destination: '/sushiswap/swap/',
+      },
+      {
         source: '/swap',
-        destination: '/exchange/swap',
+        destination: '/sushiswap/swap',
       },
       {
         source: '/swap/:token*',
-        destination: '/exchange/swap/:token*',
+        destination: '/sushiswap/swap/:token*',
       },
     ]
   },

@@ -4,7 +4,7 @@ import { classNames } from '../../functions'
 const SIZE = {
   xs: 'px-2 py-1 text-xs',
   sm: 'px-4 py-2 text-base',
-  default: 'px-4 py-3 text-base',
+  default: 'px-4 py-3 text-base font-bold',
   lg: 'px-6 py-4 text-base',
   none: 'p-0 text-base',
 }
@@ -15,7 +15,7 @@ const FILLED = {
   blue: 'bg-blue bg-opacity-80 w-full rounded text-high-emphesis hover:bg-opacity-100 disabled:bg-opacity-80',
   pink: 'bg-gradient-to-r from-[#FF555D] to-[#FF2E89] w-full rounded text-white hover:opacity-100 disabled:bg-opacity-80',
   gray: 'border rounded shadow-sm focus:ring-2 focus:ring-offset-2 bg-dark-700 bg-opacity-80 w-full text-primary border-dark-800 hover:bg-opacity-100 focus:ring-offset-dark-700 focus:ring-dark-800 disabled:bg-opacity-80',
-  green: 'bg-green bg-opacity-80 w-full rounded text-high-emphesis hover:bg-opacity-100 disabled:bg-opacity-80',
+  green: 'bg-green w-full rounded text-high-emphesis hover:bg-opacity-100 disabled:bg-opacity-80',
   gradient:
     'w-full text-high-emphesis bg-gradient-to-r from-blue to-pink opacity-80 hover:opacity-100 disabled:bg-opacity-80',
 }

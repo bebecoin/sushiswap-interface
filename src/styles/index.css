@@ -69,6 +69,10 @@ input:focus {
   background-color: #4B4E5E;
 }
 
+.bg-green {
+  background-color: #00b663;
+}
+
 /* *::-webkit-scrollbar {
   width: var(--scrollbar-width);
 }
