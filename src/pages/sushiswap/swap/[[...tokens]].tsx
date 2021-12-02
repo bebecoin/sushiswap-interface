@@ -1,12 +1,4 @@
-import {
-  ChainId,
-  Currency,
-  CurrencyAmount,
-  JSBI,
-  Token,
-  TradeType,
-  Trade as V2Trade,
-} from '@sushiswap/sdk'
+import { ChainId, Currency, CurrencyAmount, JSBI, Token, TradeType, Trade as V2Trade } from '@sushiswap/sdk'
 import { getAddress } from '@ethersproject/address'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../../hooks/useApproveCallback'
 import { BottomGrouping, SwapCallbackError } from '../../../features/exchange-v1/swap/styleds'
@@ -160,13 +152,13 @@ export default function Swap() {
     () =>
       showWrap
         ? {
-          [Field.INPUT]: parsedAmount,
-          [Field.OUTPUT]: parsedAmount,
-        }
+            [Field.INPUT]: parsedAmount,
+            [Field.OUTPUT]: parsedAmount,
+          }
         : {
-          [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
-          [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount,
-        },
+            [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
+            [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount,
+          },
     [independentField, parsedAmount, showWrap, trade]
   )
 
@@ -297,6 +289,8 @@ export default function Swap() {
     swapCallback()
       .then((hash) => {
         console.log('tx hash', hash)
+        window.parent.postMessage({ name: 'sushiswap', type: 'sent', data: { hash } }, '*')
+
         setSwapState({
           attemptingTxn: false,
           tradeToConfirm,
@@ -311,8 +305,8 @@ export default function Swap() {
             recipient === null
               ? 'Swap w/o Send'
               : (recipientAddress ?? recipient) === account
-                ? 'Swap w/o Send + recipient'
-                : 'Swap w/ Send',
+              ? 'Swap w/o Send + recipient'
+              : 'Swap w/ Send',
           label: [
             trade?.inputAmount?.currency?.symbol,
             trade?.outputAmount?.currency?.symbol,
@@ -501,7 +495,10 @@ export default function Swap() {
             />
             <AutoColumn justify="space-between" className="py-1">
               <div
-                className={classNames(isExpertMode ? 'justify-between' : 'flex-start', 'pl-12 pr-4 flex-wrap w-full flex')}
+                className={classNames(
+                  isExpertMode ? 'justify-between' : 'flex-start',
+                  'pl-12 pr-4 flex-wrap w-full flex'
+                )}
               >
                 <button
                   className="z-10 -mt-6 -mb-6 rounded-full"
@@ -617,8 +614,8 @@ export default function Swap() {
                   (wrapType === WrapType.WRAP
                     ? i18n._(t`Wrap`)
                     : wrapType === WrapType.UNWRAP
-                      ? i18n._(t`Unwrap`)
-                      : null)}
+                    ? i18n._(t`Unwrap`)
+                    : null)}
               </Button>
             ) : routeNotFound && userHasSpecifiedInputOutput ? (
               <div style={{ textAlign: 'center' }}>
@@ -672,8 +669,8 @@ export default function Swap() {
                     {priceImpactSeverity > 3 && !isExpertMode
                       ? i18n._(t`Price Impact High`)
                       : priceImpactSeverity > 2
-                        ? i18n._(t`Swap Anyway`)
-                        : i18n._(t`Swap`)}
+                      ? i18n._(t`Swap Anyway`)
+                      : i18n._(t`Swap`)}
                   </ButtonError>
                 )}
               </div>
@@ -701,10 +698,10 @@ export default function Swap() {
                 {swapInputError
                   ? swapInputError
                   : priceImpactSeverity > 3 && !isExpertMode
-                    ? i18n._(t`Price Impact Too High`)
-                    : priceImpactSeverity > 2
-                      ? i18n._(t`Swap Anyway`)
-                      : i18n._(t`Swap`)}
+                  ? i18n._(t`Price Impact Too High`)
+                  : priceImpactSeverity > 2
+                  ? i18n._(t`Swap Anyway`)
+                  : i18n._(t`Swap`)}
               </ButtonError>
             )}
             {showApproveFlow && (
