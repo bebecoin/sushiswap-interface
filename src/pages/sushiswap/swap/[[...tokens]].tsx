@@ -105,7 +105,6 @@ export default function Swap() {
   const [defaultToken, setDefaultToken] = useState<string | null>(null)
   useEffect(() => {
     const onReceviceMessage = (e: any) => {
-      console.log('onReceviceMessage data', e.data)
       if (e.data.name == 'hostapp') {
         if (e.data.type == 'token') {
           const address = getAddress(e.data.token)
