@@ -108,6 +108,7 @@ export const BAB = new Token(ChainId.MAINNET, '0xC36824905dfF2eAAEE7EcC09fCC63ab
 export const BAC = new Token(ChainId.MAINNET, '0x3449FC1Cd036255BA1EB19d65fF4BA2b8903A69a', 18, 'BAC', 'Basis Cash')
 export const CREAM = new Token(ChainId.MAINNET, '0x2ba592F78dB6436527729929AAf6c908497cB200', 18, 'CREAM', 'Cream')
 export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
+export const CYBEEDAO = new Token(ChainId.MAINNET, '0x9B812C65529eC7d20ab630235ae20fde022c8aD3', 18, 'CBD', 'CybeDAO')
 export const DOUGH = new Token(
   ChainId.MAINNET,
   '0xad32A8e6220741182940c5aBF610bDE99E737b2D',

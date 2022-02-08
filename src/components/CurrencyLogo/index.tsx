@@ -29,6 +29,12 @@ function getCurrencySymbol(currency) {
 export function getCurrencyLogoUrls(currency) {
   const urls = []
 
+  if (currency.chainId === ChainId.MAINNET && currency.symbol === 'CBD') {
+    urls.push('https://raw.githubusercontent.com/mini-Cybee/token-list/main/assets/cybee-dao.png')
+    urls.push('https://raw.githubusercontent.com/mini-Cybee/token-list/main/assets/cybee-dao.png')
+    urls.push('https://raw.githubusercontent.com/mini-Cybee/token-list/main/assets/cybee-dao.png')
+    return urls
+  }
   urls.push(`https://raw.githubusercontent.com/sushiswap/icons/master/token/${getCurrencySymbol(currency)}.jpg`)
   if (currency.chainId in BLOCKCHAIN) {
     urls.push(

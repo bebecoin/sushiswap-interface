@@ -102,25 +102,23 @@ export default function Swap() {
   const [ttl] = useUserTransactionTTL()
   const [archerETHTip] = useUserArcherETHTip()
 
+  const [defaultToken, setDefaultToken] = useState<string | null>(null)
   useEffect(() => {
     const onReceviceMessage = (e: any) => {
+      console.log('onReceviceMessage data', e.data)
       if (e.data.name == 'hostapp') {
-        console.log(e.data)
         if (e.data.type == 'token') {
           const address = getAddress(e.data.token)
-          if (address) {
-            const token = defaultTokens[address]
-            if (token) {
-              handleOutputSelect(token)
-            }
-          }
+          setDefaultToken(address)
         }
       }
     }
 
-    window.addEventListener('message', onReceviceMessage)
-    return () => window.removeEventListener('message', onReceviceMessage)
-  }, [defaultTokens])
+    window.addEventListener('message', onReceviceMessage, false)
+    return () => {
+      window.removeEventListener('message', onReceviceMessage)
+    }
+  }, [])
 
   // archer
   const archerRelay = chainId ? ARCHER_RELAY_URI?.[chainId] : undefined
@@ -411,6 +409,13 @@ export default function Swap() {
     },
     [onCurrencySelection]
   )
+
+  useEffect(() => {
+    const token = defaultTokens[defaultToken]
+    if (token) {
+      handleOutputSelect(token)
+    }
+  }, [defaultToken, defaultTokens, handleOutputSelect])
 
   // useEffect(() => {
   //   if (
