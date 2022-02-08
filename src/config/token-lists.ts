@@ -23,9 +23,11 @@ const SET_LIST = 'https://raw.githubusercontent.com/SetProtocol/uniswap-tokenlis
 const UMA_LIST = 'https://umaproject.org/uma.tokenlist.json'
 const WRAPPED_LIST = 'wrapped.tokensoft.eth'
 const DHEDGE_LIST = 'https://list.dhedge.eth.link/'
+const CYBEE_LIST = 'https://raw.githubusercontent.com/mini-Cybee/token-list/main/cybee-token-list.json'
 
 // lower index == higher priority for token import
 export const DEFAULT_LIST_OF_LISTS: string[] = [
+  CYBEE_LIST,
   COMPOUND_LIST,
   AAVE_LIST,
   CMC_ALL_LIST,
@@ -47,4 +49,4 @@ export const DEFAULT_LIST_OF_LISTS: string[] = [
 ]
 
 // default lists to be 'active' aka searched across
-export const DEFAULT_ACTIVE_LIST_URLS: string[] = [NFTX_LIST, YEARN_LIST, GEMINI_LIST]
+export const DEFAULT_ACTIVE_LIST_URLS: string[] = [CYBEE_LIST, NFTX_LIST, YEARN_LIST, GEMINI_LIST]

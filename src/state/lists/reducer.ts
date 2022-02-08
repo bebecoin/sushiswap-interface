@@ -129,6 +129,7 @@ export default createReducer(initialState, (builder) =>
 
       if (!state.activeListUrls) {
         state.activeListUrls = [url]
+        console.log('enableList', state.activeListUrls);
       }
     })
     .addCase(disableList, (state, { payload: url }) => {

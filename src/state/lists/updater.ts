@@ -18,6 +18,7 @@ export default function Updater(): null {
 
   // get all loaded lists, and the active urls
   const lists = useAllLists()
+  console.log('all lists', lists)
   const activeListUrls = useActiveListUrls()
 
   const fetchList = useFetchListCallback()
